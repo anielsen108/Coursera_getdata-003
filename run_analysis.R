@@ -82,6 +82,6 @@ summarizedData <- aggregate.data.frame(
   mean)
 
 # Write tidy data set to csv file "UciHarTidy.csv"
-write.csv(summarizedData,"UciHarTidy.csv", row.names = FALSE)
+write.csv(summarizedData,"UciHarTidy.txt", row.names = FALSE)
 rm(combinedDataMeanStd)
 rm(summarizedData)

@@ -15,7 +15,7 @@ The "run_analysis.R" script prepares Samsung Human Activity Recognition for furt
 
 To run it, place the script and the Samsung data folder "UCI HAR Dataset" in the working directory.
 
-The resulting output file is "UciHarTidy.csv"
+The resulting output file is a csv file "UciHarTidy.txt"
 
 The basic outline of the script is as follows:
 

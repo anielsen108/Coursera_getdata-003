@@ -5,4 +5,4 @@ The "run_analysis.R" script prepares Samsung Human Activity Recognition for furt
 
 To run it, place the script and the Samsung data folder "UCI HAR Dataset" in the working directory.
 
-CodeBook.MD describes each column in the resulting output, "UciHarTidy.csv", and the method of data transformation.
+CodeBook.MD describes each column in the resulting output, "UciHarTidy.txt", and the method of data transformation.
