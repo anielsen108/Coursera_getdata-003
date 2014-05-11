@@ -1,17 +1,8 @@
-Title
+Getting and Cleaning Data Course Project
 ========================================================
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the **Help** toolbar button for more details on using R Markdown).
+The "run_analysis.R" script prepares Samsung Human Activity Recognition for further analysis.  It transforms the raw data into a data set consisting of mean and standard deviation measures, summarized by Subject and Activity Name.
 
-When you click the **Knit HTML** button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+To run it, place the script and the Samsung data folder "UCI HAR Dataset" in the working directory.
 
-```{r}
-summary(cars)
-```
-
-You can also embed plots, for example:
-
-```{r fig.width=7, fig.height=6}
-plot(cars)
-```
-
+CodeBook.MD describes each column in the resulting output, "UciHarTidy.csv", and the method of data transformation.
