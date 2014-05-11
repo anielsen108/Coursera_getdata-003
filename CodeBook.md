@@ -29,6 +29,8 @@ The basic outline of the script is as follows:
 8. Summarize data with mean, by Subject and Activity Name.
 9. Write tidy data set to csv file "UciHarTidy.csv"
 
+Thse script will install the "reshape2" package if it is not installed.
+
 Key Columns:
 ------------
 subject - Anonymous Subject ID [1..30]  

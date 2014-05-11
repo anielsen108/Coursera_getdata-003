@@ -6,6 +6,10 @@
 #  consisting of mean and standard deviation measures,
 #  summarized by Subject and Activity Name
 
+# Reshape2 package is required.
+require("reshape2") || install.packages("reshape2")
+library("reshape2")
+
 # Read and Merge training and test measures to create one data set.
 testMeasures <- read.table("./UCI HAR Dataset/test/X_test.txt", 
                            header = FALSE, fill = FALSE, sep = "")
@@ -43,10 +47,11 @@ colnames(activityLabels) <- c("activityId","activityName")
 rownames(activityLabels) <- activityLabels$activityId
 
 # Transform the activity data set of activity ids into activity names. 
-combinedActivityLabels <- merge(combinedActivity, activityLabels)
+combinedActivity[,2] <- activityLabels[as.vector(combinedActivity[,1]),2]
+colnames(combinedActivity) <- c("activityId","activityName")
 
 # Combine Subject List, Activity List, and Measures into a single data set
-combinedData <- cbind(combinedSubject, combinedActivityLabels$activityName, combinedMeasures)
+combinedData <- cbind(combinedSubject, combinedActivity$activityName, combinedMeasures)
 colnames(combinedData)[1] <- "subject"
 colnames(combinedData)[2] <- "activityName"
 
@@ -67,19 +72,15 @@ colnames(combinedDataMeanStd)[3:ncol(combinedDataMeanStd)] <-
   measureNamesMeanStd
 rm(activityLabels)
 rm(combinedActivity)
-rm(combinedActivityLabels)
 rm(combinedData)
 rm(combinedMeasures)
 rm(combinedSubject)
 rm(measureNames)
-rm(measureNamesMeanStd)
 
-# Summarize data with mean, by Subject and Activity Name.
-summarizedData <- aggregate.data.frame(
-  combinedDataMeanStd[3:ncol(combinedDataMeanStd)],
-  by=list(subject = combinedDataMeanStd$subject, 
-          activityName = combinedDataMeanStd$activityName),
-  mean)
+# Summarize data using mean, by Subject and Activity Name.
+dataMelt <- melt(combinedDataMeanStd, 
+                 id.vars=c("subject", "activityName"))
+summarizedData <- dcast(dataMelt, subject + activityName ~ variable, mean)  
 
 # Write tidy data set to csv file "UciHarTidy.csv"
 write.csv(summarizedData,"UciHarTidy.txt", row.names = FALSE)
